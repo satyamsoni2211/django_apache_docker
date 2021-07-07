@@ -1,0 +1,4 @@
+FROM httpd:alpine
+COPY httpd.conf /usr/local/apache2/conf
+#COPY ../staticfiles/* /usr/local/apache2/static/
+EXPOSE 80

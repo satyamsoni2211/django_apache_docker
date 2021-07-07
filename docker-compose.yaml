@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  web:
+    build:
+      dockerfile: Dockerfile.django
+      context: .
+    expose:
+      - "8000"
+    ports:
+    - "8000:8000"
+    volumes:
+    - "staticfiles:/staticfiles"
+  server:
+    build:
+      dockerfile: Dockerfile.httpd
+      context: ./httpd
+    depends_on:
+      - web
+    ports:
+    - "80:80"
+    volumes:
+      - "staticfiles:/usr/local/apache2/static/"
+volumes:
+  staticfiles:
